@@ -1,31 +1,51 @@
-import { LOAD_SMURFS_OK } from '../actions';
-import { ADD_SMURF } from '../actions/index';
+import { FETCH_SMURFS_START, FETCH_SMURFS_SUCCESS, FETCH_SMURFS_FAILURE, ADD_SMURF, ADDING_SMURF } from '../actions/index.js';
 
 const initialState = {
-    smurfs : [],
+    smurfs: [],
     isFetching: false,
-    error:''
+    error: ''
 };
 
-export const reducer = (state = initialState, action) => {
-    console.log(state);
+
+const reducer = (state = initialState, action) => {
+    console.log('action', action)
     switch (action.type) {
-        case LOAD_SMURFS_OK:
-            return {
-                ...state,
-                isFetching: true,
-                error: ""
-            };
-       
-        case ADD_SMURF:
-            console.log(ADD_SMURF); 
-            return {
-                ...state,
-                smurfs: action.payload,
-                isFetching: false,
-                error: ''
-            };
-        default:
-            return state; 
+      case FETCH_SMURFS_START:
+        return {
+          ...state,
+          isFetching: true,
+          error: ""
+        };
+      case FETCH_SMURFS_SUCCESS:
+        return {
+          ...state,
+          smurfs: action.payload,
+          isFetching: false,
+          error: ""
+        };
+      case FETCH_SMURFS_FAILURE:
+          return {
+              ...state,
+              isFetching: false,
+              error: action.payload
+          }
+      case ADDING_SMURF:
+        return {
+          ...state,
+          isFetching: true,
+          error: ""
+        };
+      case ADD_SMURF:
+        return {
+          ...state,
+          isFetching: false,
+          error: "",
+          smurfs: action.payload
+        };
+
+      default:
+        return state;
     }
 }
+
+export default reducer;
