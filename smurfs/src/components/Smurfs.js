@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Card, Button, CardHeader,CardBody,
-  CardTitle, CardText } from 'reactstrap';
+  CardTitle, CardText, Spinner } from 'reactstrap';
 
 const Smurfs = ({ getSmurfs, smurfs, isFetching}) => {
 
@@ -9,10 +9,12 @@ useEffect(() => {
 getSmurfs();
 }, [getSmurfs])
 
+ 
+
 console.log('Smurfs2', smurfs)
 
 if(isFetching){
-return <h3>Getting smurfs</h3>
+return <h3><Spinner color="dark" /></h3>
 }
 
 return (
@@ -26,7 +28,7 @@ return (
           <CardTitle>Age: {item.age}</CardTitle>
           <CardText>Height: {item.height}</CardText>
           <Button color="info" size="sm">Edit</Button> 
-          <Button color="danger"  size="sm">Delete</Button>
+          <Button onClick={()=> smurfs.filter(item =>item.name)}  color="danger"  size="sm">Delete</Button>
         </CardBody>
          
       </Card>

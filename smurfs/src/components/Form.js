@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button,Input, Form } from 'reactstrap';
+import { Button, Input, Form, CardHeader } from 'reactstrap';
 const SmurfForm = props => {
 
     console.log('Form', props)
@@ -17,7 +17,8 @@ const SmurfForm = props => {
     }
 
     return (
-        <div>
+        <div className="form-container">
+            <CardHeader className="cardheader">Add A Smurf</CardHeader>
             <Form onSubmit={handleSubmit}>
                 <Input type='text' 
                        name='name' 
@@ -37,7 +38,7 @@ const SmurfForm = props => {
                        value={allSmurfs.height} 
                        onChange={handleChange}
                        />
-                <Button color="Primary" type='sumbit'>Add Smurf</Button>
+                <Button color="info" type='sumbit'>Add Smurf</Button>
             </Form>
         </div>
     )
